@@ -101,6 +101,7 @@ class Puppet::Indirector::REST < Puppet::Indirector::Terminus
       content_type, body = parse_response(response)
       result = deserialize_find(content_type, body)
       result.name = request.key if result.respond_to?(:name=)
+      puts YAML.dump(result)
       result
     else
       nil

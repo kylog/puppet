@@ -1,6 +1,7 @@
 require 'puppet/node'
 require 'puppet/resource/catalog'
 require 'puppet/indirector/code'
+require 'puppet/indirector/catalog/puppetdb'
 require 'puppet/util/profiler'
 require 'yaml'
 
@@ -43,7 +44,13 @@ class Puppet::Resource::Catalog::Compiler < Puppet::Indirector::Code
     node = node_from_request(request)
 
     if catalog = compile(node)
-      return catalog
+      beefy_catalog = Puppet::Resource::Catalog::Puppetdb.new.munge_catalog(catalog)
+      beefy_catalog.merge!({'document_type' =>'Catalog'})
+      puts "Original catalog:"
+      puts catalog.to_pson
+      puts "Munged catalog:"
+      puts beefy_catalog.to_pson
+      return beefy_catalog
     else
       # This shouldn't actually happen; we should either return
       # a config or raise an exception.

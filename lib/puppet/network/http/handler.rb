@@ -146,13 +146,23 @@ module Puppet::Network::HTTP::Handler
     format = accepted_response_formatter_for(model_class, request)
     set_content_type(response, format)
 
+    #puts "Result"
+    #puts result.class
+    #puts result
+    #
     rendered_result = result
     if result.respond_to?(:render)
       Puppet::Util::Profiler.profile("Rendered result in #{format}") do
         rendered_result = result.render(format)
       end
+    else
+      rendered_result = result.to_pson  # quick hack
     end
 
+    #puts "Rendered Result"
+    #puts rendered_result.class
+    #puts rendered_result
+    #
     Puppet::Util::Profiler.profile("Sent response") do
       set_response(response, rendered_result)
     end
