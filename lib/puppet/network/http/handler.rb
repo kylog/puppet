@@ -159,10 +159,10 @@ module Puppet::Network::HTTP::Handler
       rendered_result = result.to_pson  # quick hack
     end
 
-    #puts "Rendered Result"
-    #puts rendered_result.class
-    #puts rendered_result
-    #
+    puts "Rendered Result"
+    puts rendered_result.class
+    puts rendered_result
+
     Puppet::Util::Profiler.profile("Sent response") do
       set_response(response, rendered_result)
     end
