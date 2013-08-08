@@ -1,5 +1,9 @@
 #! /usr/bin/env ruby
 require 'spec_helper'
+require 'json'
+require 'json-schema'
+
+CATALOG_SCHEMA = JSON.parse(File.read(File.join(File.dirname(__FILE__), 'catalog.json')))
 
 describe Puppet::Resource::Catalog, "when compiling" do
   include PuppetSpec::Files
@@ -798,6 +802,14 @@ describe Puppet::Resource::Catalog, "when converting to pson" do
 
   def pson_output_should
     @catalog.class.expects(:pson_create).with { |hash| yield hash }.returns(:something)
+  end
+
+  def validate_as_json(catalog)
+    JSON::Validator.validate!(CATALOG_SCHEMA, catalog.to_pson)
+  end
+
+  it "should validate" do
+    validate_as_json(@catalog)
   end
 
   # LAK:NOTE For all of these tests, we convert back to the resource so we can

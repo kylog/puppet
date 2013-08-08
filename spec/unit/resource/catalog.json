@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Catalog",
+    "description": "A puppet resource catalog",
+    "type": "object",
+    "properties": {
+        "document_type": {
+            "description": "Only supported value is 'Catalog'",
+            "type": "string",
+            "enum": ["Catalog"]
+        },
+        "metadata": {
+            "description": "Only contents of metadata is api_version",
+            "type": "object",
+            "properties": {
+                "api_version": {
+                    "description": "Only supported api_version is 1",
+                    "type": "integer",
+                    "enum": [1]
+                }
+            },
+            "required": ["api_version"],
+            "additionalProperties": false
+        },
+        "data": {
+            "description": "The catalog data itself",
+            "type": "object",
+            "properties": {
+               "name": {
+                   "description": "The node name",
+                   "type": "string"
+               },
+                "version": {
+                    "description": "Catalog  version",
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "required": ["document_type", "metadata", "data"],
+    "additionalProperties": false
+}
