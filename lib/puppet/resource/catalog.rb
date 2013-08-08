@@ -227,6 +227,7 @@ class Puppet::Resource::Catalog < Puppet::SimpleGraph
     @resources = []
     @applying = false
     @relationship_graph = nil
+    @version = 0
 
     @host_config = true
 
