@@ -50,7 +50,7 @@ class Puppet::Resource::Catalog::Compiler < Puppet::Indirector::Code
       puts catalog.to_pson
       puts "Munged catalog:"
       puts beefy_catalog.to_pson
-      return beefy_catalog
+      return catalog
     else
       # This shouldn't actually happen; we should either return
       # a config or raise an exception.
