@@ -121,9 +121,13 @@ Puppet::Indirector::Face.define(:catalog, '0.0.1') do
       catalog.retrieval_duration = retrieval_duration
       catalog.write_class_file
 
-      Puppet::Resource::Catalog.indirection.terminus_class = :yaml
-      Puppet::Face[:catalog, "0.0.1"].save(catalog)
-      Puppet.notice "Saved catalog for #{Puppet[:certname]} to yaml"
+      # just dump it to stdout for a quick experiment
+      puts catalog.to_pson
+
+      # Hmm this didn't work -- dead code?
+      #Puppet::Resource::Catalog.indirection.terminus_class = :yaml
+      #Puppet::Face[:catalog, "0.0.1"].save(catalog)
+      #Puppet.notice "Saved catalog for #{Puppet[:certname]} to yaml"
       nil
     end
   end
