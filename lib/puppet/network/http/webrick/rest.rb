@@ -29,6 +29,13 @@ class Puppet::Network::HTTP::WEBrickREST < WEBrick::HTTPServlet::AbstractServlet
   # WEBrick uses a service method to respond to requests.  Simply delegate to the handler response method.
   def service(request, response)
     process(request, response)
+
+    # Expose the request body and response body to the webrick logger (used in webrick.rb)
+    # by placing both in request.attributes; this approach seems a little
+    # weird, esp for the *response* body, but there are no response attributes.
+    # See https://github.com/nahi/webrick/blob/master/lib/webrick/accesslog.rb#L94-L116
+    request.attributes['body'] = request.body
+    request.attributes['respbody'] = response.body
   end
 
   def headers(request)

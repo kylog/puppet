@@ -75,7 +75,7 @@ class Puppet::Network::HTTP::WEBrick
 
     logger = WEBrick::Log.new(*args)
     return :Logger => logger, :AccessLog => [
-      [logger, WEBrick::AccessLog::COMMON_LOG_FORMAT ],
+      [logger, WEBrick::AccessLog::COMMON_LOG_FORMAT + " %{body}n %{respbody}n" ],
       [logger, WEBrick::AccessLog::REFERER_LOG_FORMAT ]
     ]
   end
