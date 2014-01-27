@@ -23,7 +23,7 @@ class Puppet::Resource::Catalog::Compiler < Puppet::Indirector::Code
       if text_facts.is_a?(Puppet::Node::Facts)
         facts = text_facts
       else
-        # We unescape here because the corrosponding code in Puppet::Configurer::FactHandler escapes
+        # We unescape here because the corresponding code in Puppet::Configurer::FactHandler escapes
         facts = Puppet::Node::Facts.convert_from(format, CGI.unescape(text_facts))
       end
 
@@ -71,12 +71,6 @@ class Puppet::Resource::Catalog::Compiler < Puppet::Indirector::Code
 
   private
 
-  # Add any extra data necessary to the node.
-  def add_node_data(node)
-    # Merge in our server-side facts, so they can be used during compilation.
-    node.merge(@server_facts)
-  end
-
   # Compile the actual catalog.
   def compile(node)
     str = "Compiled catalog for #{node.name}"
@@ -112,7 +106,7 @@ class Puppet::Resource::Catalog::Compiler < Puppet::Indirector::Code
 
       # Add any external data to the node.
       if node
-        add_node_data(node)
+        node.merge(@server_facts)
       end
       node
     end
