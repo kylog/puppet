@@ -408,7 +408,7 @@ class Puppet::Provider
   # else than a straight forward getter/setter pair of methods is required.
   # (i.e. define such overriding methods after this method has been called)
   #
-  # An implementor of a provider that makes use of `prefetch` and `flush` can use this method since it uses
+  # An implementer of a provider that makes use of `prefetch` and `flush` can use this method since it uses
   # the internal `@property_hash` variable to store values. An implementation would then update the system
   # state on a call to `flush` based on the current values in the `@property_hash`.
   #
