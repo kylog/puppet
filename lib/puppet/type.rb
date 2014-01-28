@@ -968,11 +968,12 @@ class Type
   end
 
   # Flushes the provider if supported by the provider, else no action.
-  # This is called by the transaction.
-  # @todo What does Flushing the provider mean? Why is it interesting to know that this is
-  #   called by the transaction? (It is not explained anywhere what a transaction is).
-  #
-  # @return [???, nil] WHAT DOES IT RETURN? GUESS IS VOID
+  # This method may be implemented by a provider in order to flush properties
+  # that have not been individually applied to the managed entity's current
+  # state. This is called by the resource harness once it has completed
+  # evaluating a resource.
+
+  # @return [void]
   def flush
     self.provider.flush if self.provider and self.provider.respond_to?(:flush)
   end
