@@ -31,7 +31,7 @@ Puppet::Type.type(:package).provide :pkg, :parent => Puppet::Provider::Package d
 
   # The IFO flag field is just what it names, the first field can have ether
   # i_nstalled or -, and second field f_rozen or -, and last
-  # o_bsolate or r_rename or -
+  # o_bsolete or r_rename or -
   # so this checks if the installed field is present, and also verifies that
   # if not the field is -, else we dont know what we are doing and exit with
   # out doing more damage.
