@@ -5,28 +5,28 @@ directories:
     group: 'wheel'
     perms: '0644'
   bin:
-    path: 'usr/bin'
+    path: 'opt/puppetlabs/bin'
     owner: 'root'
     group: 'wheel'
     perms: '0755'
   'man/man8':
-    path: 'usr/share/man/man8'
+    path: 'opt/puppetlabs/puppet/share/man/man8'
     owner: 'root'
     group: 'wheel'
     perms: '0755'
 files:
   'conf/auth.conf':
-    path: 'private/etc/puppet'
+    path: 'etc/puppetlabs/puppet'
     owner: 'root'
     group: 'wheel'
     perms: '0644'
   'man/man5/puppet.conf.5':
-    path: 'usr/share/man/man5'
+    path: 'opt/puppetlabs/puppet/share/man/man5'
     owner: 'root'
     group: 'wheel'
     perms: '0644'
   '[A-Z]*':
-    path: 'usr/share/doc/puppet'
+    path: 'usr/local/share/doc/puppet'
     owner: 'root'
     group: 'wheel'
     perms: '0644'
