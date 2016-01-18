@@ -248,9 +248,7 @@ module Puppet::Pops::Evaluator::Runtime3Support
     # this is done from the perspective of the environment.
     loader = loaders.private_environment_loader
     if loader && func = loader.load(:function, name)
-      Puppet::Util::Profiler.profile(name, [:functions, name]) do
-        return func.call(scope, *args, &block)
-      end
+      return func.call(scope, *args, &block)
     end
 
     # Call via 3x API if function exists there
@@ -276,9 +274,7 @@ module Puppet::Pops::Evaluator::Runtime3Support
 
     loader = adapter.nil? ? loaders.private_environment_loader : adapter.loader
     if loader && func = loader.load(:function, name)
-      Puppet::Util::Profiler.profile(name, [:functions, name]) do
-        return func.call(scope, *args, &block)
-      end
+      return func.call(scope, *args, &block)
     end
 
     # Call via 3x API if function exists there
