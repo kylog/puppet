@@ -1,6 +1,9 @@
 Puppet
 ======
 
+Hello Puppet
+Goodbye Puppet
+
 [![Build Status](https://travis-ci.org/puppetlabs/puppet.png?branch=master)](https://travis-ci.org/puppetlabs/puppet)
 [![Inline docs](https://inch-ci.org/github/puppetlabs/puppet.png)](https://inch-ci.org/github/puppetlabs/puppet)
 
